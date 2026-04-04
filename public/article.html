@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article — The Signal</title>
+  <meta name="description" content="Read full article on The Signal." />
+  <script>
+    if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23d4a853%22/><text x=%2250%22 y=%2270%22 font-family=%22Georgia, serif%22 font-size=%2265%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23000%22>S</text></svg>">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Reading Progress Bar -->
+<div class="article-progress" id="article-progress"></div>
+
+<!-- Article Masthead -->
+<header class="article-masthead">
+  <button class="back-btn" id="back-btn" onclick="history.href='/' ? history.back() : location.href='/'">← Back to Feed</button>
+  <div class="article-masthead-logo" onclick="location.href='/'">THE <em>SIGNAL</em></div>
+  <div style="display:flex; justify-content:flex-end; width:120px">
+    <button class="btn-icon" id="theme-toggle-btn" title="Toggle Theme">
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Article Content -->
+<div class="article-wrapper" id="article-wrapper">
+
+  <!-- Loading state -->
+  <div id="article-loading">
+    <div class="article-cat-tag skel" style="width:80px;height:12px;margin-bottom:20px"></div>
+    <div class="skel" style="height:36px;margin-bottom:12px;border-radius:4px"></div>
+    <div class="skel" style="height:36px;width:80%;margin-bottom:12px;border-radius:4px"></div>
+    <div class="skel" style="height:36px;width:60%;margin-bottom:28px;border-radius:4px"></div>
+    <div class="skel" style="height:18px;margin-bottom:8px;border-radius:4px"></div>
+    <div class="skel" style="height:18px;width:90%;margin-bottom:32px;border-radius:4px"></div>
+    <div class="loading-state" style="margin-top:40px;color:var(--text-muted);font-size:0.85rem">
+      Preparing article...
+    </div>
+  </div>
+
+  <!-- Article will be injected here -->
+  <div id="article-content" style="display:none">
+    <div class="article-cat-tag" id="art-category"></div>
+    <h1 class="article-h1" id="art-headline"></h1>
+    <p class="article-dek-text" id="art-dek"></p>
+
+    <div class="article-byline">
+      <span class="byline-text" style="font-weight: 500; color: var(--text-primary)">By The Signal Desk</span>
+      <span class="byline-text">·</span>
+      <span class="byline-text" id="art-date"></span>
+      <span class="byline-text">·</span>
+      <span class="byline-text" id="art-source"></span>
+    </div>
+
+    <div class="article-stats">
+      <div class="stat"><strong id="art-read-time">...</strong>Read time</div>
+      <div class="stat"><strong id="art-word-count">...</strong>Words</div>
+      <div class="stat"><strong>Verified</strong>Source</div>
+      <div class="stat" style="margin-left: auto;">
+        <button id="listen-btn" class="btn-icon" style="border: 1px solid var(--accent-gold); color: var(--accent-gold); border-radius: 20px; padding: 6px 16px; font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px; vertical-align: middle;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Listen
+        </button>
+      </div>
+    </div>
+
+    <div class="article-body" id="art-body"></div>
+
+    <div class="key-facts" id="key-facts-section">
+      <div class="key-facts-title">Key Facts</div>
+      <div id="key-facts-list"></div>
+    </div>
+
+    <div class="sources-section">
+      <div class="sources-title">Sources</div>
+      <a href="#" class="source-link" id="art-source-link" target="_blank" rel="noopener">🔗 Original Report</a>
+    </div>
+  </div>
+
+  <!-- Q&A Section -->
+  <div class="qa-section" id="qa-section" style="display:none">
+    <div class="qa-header">
+      <span class="qa-title">Story Explorer</span>
+      <span class="qa-subtitle">Ask questions to go deeper</span>
+    </div>
+    <div class="qa-messages" id="qa-messages">
+      <div class="qa-message assistant">
+        <div class="msg-label">Desk Assistant</div>
+        <div class="msg-bubble">I have the full context on this story. What would you like to know? You can ask me to explain background, explore implications, or dig into any detail.</div>
+      </div>
+    </div>
+    <div class="qa-input-area">
+      <textarea class="qa-input" id="qa-input" placeholder="Ask a question about this story…" rows="1"></textarea>
+      <button class="qa-send" id="qa-send">Ask →</button>
+    </div>
+  </div>
+
+  <!-- Related Articles -->
+  <div class="related-section" id="related-section" style="display:none">
+    <div class="related-title">More from The Signal</div>
+    <div class="related-grid" id="related-grid"></div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-logo">THE <em>SIGNAL</em></div>
+  <p class="footer-tagline">Autonomous AI Editorial. Real Reporting. Independent Perspectives.</p>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Signal News Desk. All rights reserved.</div>
+    <div class="footer-maker">Made with 💙 by <a href="https://minianonlink.vercel.app/swetashukla" class="maker-link" target="_blank">Sweta Shukla</a></div>
+  </div>
+</footer>
+
+<script src="pipeline.js"></script>
+<script src="article.js"></script>
+</body>
+</html>
