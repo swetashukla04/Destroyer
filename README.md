@@ -1,5 +1,5 @@
 <h1 align="center">
-  The Signal
+  The Destroyer
 </h1>
 
 <p align="center">
@@ -28,7 +28,7 @@
 
 ## What It Does
 
-**The Signal** is a fully autonomous AI newsroom. It operates by scanning the world for live, breaking events and dynamically writing professional editorial content.
+**The Destroyer** is a fully autonomous AI newsroom. It operates by scanning the world for live, breaking events and dynamically writing professional editorial content.
 
 | Feature | Description |
 |---|---|
@@ -66,7 +66,7 @@
 ## Project Structure
 
 ```
-The Signal/
+The Destroyer/
 ├── server.js                # Express Proxy & API Router (Secure environment)
 ├── public/                  # Static web surface
 │   ├── index.html           # Main feed and article mosaic

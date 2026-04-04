@@ -1,7 +1,7 @@
 # High Level Design (HLD)
 
 ## Overview
-The Signal is structured as a client-server web application. The primary design philosophy is to execute heavy artificial intelligence processing on a secured backend proxy, while providing a fast, responsive user interface on the frontend.
+The Destroyer is structured as a client-server web application. The primary design philosophy is to execute heavy artificial intelligence processing on a secured backend proxy, while providing a fast, responsive user interface on the frontend.
 
 ## Architecture Components
 

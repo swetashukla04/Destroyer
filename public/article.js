@@ -1,4 +1,4 @@
-/* article.js — Full article detail page for The Signal */
+/* article.js — Full article detail page for The Destroyer */
 
 const S = window.Signal;
 
@@ -103,7 +103,7 @@ async function loadArticle() {
   let { article, cardData } = JSON.parse(stored);
 
   // Update page title immediately
-  document.title = `${cardData.headline} — The Signal`;
+  document.title = `${cardData.headline} — The Destroyer`;
 
   try {
     // Check cache first
@@ -175,7 +175,7 @@ function renderArticle(data, article, cardData) {
   const dek = data.dek || cardData.dek;
   const body = data.body || '';
 
-  document.title = `${headline} — The Signal`;
+  document.title = `${headline} — The Destroyer`;
   artCategory.textContent = S.CATEGORY_LABELS[data.category || cardData.category] || 'News';
   artHeadline.textContent = headline;
   artDek.textContent = dek;

@@ -1,4 +1,4 @@
-/* pipeline.js — AI Editorial Pipeline for The Signal */
+/* pipeline.js — AI Editorial Pipeline for The Destroyer */
 
 // Groq calls are proxied through /api/groq on our Express server so API keys stay server-side
 const GROQ_ENDPOINT_PROXY = '/api/groq';
@@ -180,14 +180,14 @@ Return ONLY valid JSON format:
     result.category = category;
     result.originalUrl = article.url;
     result.imageUrl = article.urlToImage || null;
-    result.source = article.source?.name || 'The Signal';
+    result.source = article.source?.name || 'The Destroyer';
     result.publishedAt = article.publishedAt;
     sessionStorage.setItem(cacheKey, JSON.stringify(result));
     return result;
   } catch (err) {
     const fallback = {
       headline: article.title?.replace(/\s*-\s*[^-]+$/, '') || 'Breaking Story',
-      dek: article.description || 'Read the full report from The Signal.',
+      dek: article.description || 'Read the full report from The Destroyer.',
       keyFacts: ['Story developing — full article available'],
       category,
       originalUrl: article.url,
@@ -327,7 +327,7 @@ async function answerQuestion(question, articleContext) {
   const messages = [
     {
       role: 'system',
-      content: `You are a knowledgeable journalist at The Signal. You wrote this article:
+      content: `You are a knowledgeable journalist at The Destroyer. You wrote this article:
 Headline: ${articleContext.headline}
 ${articleContext.body}
 

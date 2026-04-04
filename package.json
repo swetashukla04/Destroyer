@@ -1,7 +1,7 @@
 {
   "name": "the-signal",
   "version": "1.0.0",
-  "description": "AI-native news surface — The Signal",
+  "description": "AI-native news surface — The Destroyer",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

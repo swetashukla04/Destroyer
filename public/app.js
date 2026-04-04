@@ -1,4 +1,4 @@
-/* app.js — Main feed orchestration for The Signal */
+/* app.js — Main feed orchestration for The Destroyer */
 
 const S = window.Signal;
 

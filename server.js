@@ -77,7 +77,7 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`\n🗞️  THE SIGNAL is running at http://localhost:${PORT}\n`);
+  console.log(`\n🗞️  THE DESTROYER is running at http://localhost:${PORT}\n`);
 });
 
 module.exports = app;
